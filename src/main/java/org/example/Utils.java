@@ -26,4 +26,10 @@ public class Utils {
         return nasaObject.getUrl();
     }
 
+    public static String getResponse(String uri) throws IOException {
+        CloseableHttpResponse response = httpClient.execute(new HttpGet(uri));
+        NasaObject nasaObject = mapper.readValue(response.getEntity().getContent(), NasaObject.class);
+        return nasaObject.toString();
+    }
+
 }

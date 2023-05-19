@@ -1,9 +1,13 @@
 package org.example;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Setter
+@Getter
 public class NasaObject
 {
     private final String copyright;
@@ -37,4 +41,17 @@ public class NasaObject
         this.url = url;
     }
 
+    @Override
+    public String toString()
+    {
+        return '\n' +
+                "copyright = " + copyright + '\n' +
+                "date = " + date + '\n' +
+                "explanation = " + explanation + '\n' +
+                "hdurl = " + hdurl + '\n' +
+                "mediaType = " + mediaType + '\n' +
+                "serviceVersion = " + serviceVersion + '\n' +
+                "title = " + title + '\n' +
+                "url = " + url + '\n';
+    }
 }

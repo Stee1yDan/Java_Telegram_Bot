@@ -9,7 +9,7 @@ import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 
 import java.io.IOException;
 
-public class MyTelegramBot extends TelegramLongPollingBot
+public class TelegramBot extends TelegramLongPollingBot
 {
     public static final String BOT_TOKEN = "6145779010:AAG1GvFomfoKkGZhRTc5tU6qGZfanUlLURU";
     public static final String USER_NAME = "strgazer_bot";
@@ -24,7 +24,7 @@ public class MyTelegramBot extends TelegramLongPollingBot
         return USER_NAME;
     }
 
-    public MyTelegramBot() throws TelegramApiException
+    public TelegramBot() throws TelegramApiException
     {
         TelegramBotsApi botsApi = new TelegramBotsApi(DefaultBotSession.class);
 
@@ -54,8 +54,8 @@ public class MyTelegramBot extends TelegramLongPollingBot
             switch (update.getMessage().getText())
             {
                 case "/help":
-                    sendMessage("Привет, я бот NASA! Я высылаю ссылки на картинки по запросу. " +
-                            "Напоминаю, что картинки на сайте NASA обновляются раз в сутки");
+                    sendMessage("Hi, I'm a NASA bot! I send links to pictures on request.\n" +
+                            "                            \"Just a reminder that the pictures on the NASA website are updated once a day.");
                     break;
                 case "/give":
                     try
@@ -67,8 +67,18 @@ public class MyTelegramBot extends TelegramLongPollingBot
                         throw new RuntimeException(e);
                     }
                     break;
+                case "/give_full_info":
+                    try
+                    {
+                        sendMessage(Utils.getResponse(URI));
+                    }
+                    catch (IOException e)
+                    {
+                        throw new RuntimeException(e);
+                    }
+                    break;
                 default:
-                    sendMessage("Я не понимаю :(");
+                    sendMessage("Invalid command :(");
             }
         }
     }
